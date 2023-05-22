@@ -1,8 +1,41 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-async function bootstrap() {
+import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+
+const { version } = require('../package.json');
+
+
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+
+  const configService = app.get(ConfigService);
+  const isProductionEnv = configService.get('environment') === 'production';
+
+   /* attivazione di Swagger e configurazione*/ 
+   if (configService.get<boolean>('enableSwagger')) {
+    const config = new DocumentBuilder()
+      .setTitle('Middlewares Test API')
+      .setVersion(version)
+      // .addBearerAuth();
+      if(isProductionEnv) {
+        config.addServer('/api');
+      }
+    const document = SwaggerModule.createDocument(app, config.build());
+    SwaggerModule.setup(`/swagger`, app, document, {
+      customSiteTitle: 'Set-Wise API Config',
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+      customCss: `
+          .swagger-ui .topbar { display: none; }
+          .swagger-ui .info .title::before { display: inline-block; width: 226px; height: 65px; margin: -50px 0; position: relative; content: ''; vertical-align: middle; background-size: contain; background-repeat: no-repeat; background-position: left center; background-image: url(https://log-in.benetti.3logic.it/assets/img/logo.png); }
+          `,
+    });
+  }
+
   await app.listen(3000);
 }
 bootstrap();
