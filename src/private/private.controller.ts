@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 
-@Controller('private')
-export class PrivateController {}
+import { AuthGuard } from 'src/auth/auth.guard';
+
+@Controller()
+export class PrivateController {
+  @UseGuards(AuthGuard)
+  @Get('private-route')
+  privateRoute():string  {
+    return "you have right access to see this message"
+  }
+}
