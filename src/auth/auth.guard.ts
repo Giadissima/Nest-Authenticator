@@ -15,9 +15,9 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     /**
-     * This function checks if the user has send in the request the JTW token, 
-     * and in this case also checks token's validity
-     * @returns {Promise<boolean>} - True if token is valid otherwise False
+     * This function checks if the user has sent a request that includes a JTW token,
+     * and if so, checks the token's validity
+     * @returns {Promise<boolean>} - True if token is valid, False otherwise
      */
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
