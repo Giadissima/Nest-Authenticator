@@ -7,7 +7,8 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @ApiBearerAuth()
 export class PrivateController {
   @ApiTags('private')
-  @ApiUnauthorizedResponse({ description: "Unauthorized"})
+  // TODO come mai non lo mostra? o non lo vedo io? 
+  @ApiUnauthorizedResponse({ description: "Swagger Unathorized error"})
   @UseGuards(AuthGuard)
   @Get('private-route')
   privateRoute():string  {
