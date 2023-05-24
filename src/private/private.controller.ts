@@ -1,9 +1,12 @@
+import { ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller()
 export class PrivateController {
+  @ApiTags('private')
+  @ApiUnauthorizedResponse({ description: "Unauthorized"})
   @UseGuards(AuthGuard)
   @Get('private-route')
   privateRoute():string  {

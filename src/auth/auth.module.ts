@@ -13,8 +13,9 @@ const jwtConstants = configFn().jwt;
     UsersModule,
     JwtModule.register({
       global: true,
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      // TODO deprecated function, change it
+      secretOrPrivateKey: jwtConstants.secret,
+      signOptions: { expiresIn:  jwtConstants.duration},
     }),
   ],
   providers: [AuthService],
