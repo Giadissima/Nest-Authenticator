@@ -17,6 +17,7 @@ async function bootstrap(): Promise<void> {
    /* attivazione di Swagger e configurazione*/ 
    if (configService.get<boolean>('enableSwagger')) {
     const config = new DocumentBuilder()
+      .addBearerAuth()
       .setTitle('Middlewares Test API')
       .setVersion(version)
       // .addBearerAuth();
