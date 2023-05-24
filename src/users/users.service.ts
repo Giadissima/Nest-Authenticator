@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 // This should be a real class/interface representing a user entity
 export type User = {userId: number, username: string, password: string};
-
+export type UserToken = {accessToken: string}; 
 @Injectable()
 export class UsersService {
   private readonly users = [
