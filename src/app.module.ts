@@ -1,6 +1,5 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
@@ -10,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import configuration from './config/config'; // il nome configuration gliel'ho dato in questo momento, posso chiamarlo come voglio
 
 @Module({
+  // ? Configuration of the external modules (imported from libraries)
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -31,7 +31,6 @@ import configuration from './config/config'; // il nome configuration gliel'ho d
     AuthModule,
     UsersModule,
     PrivateModule,],
-  providers: [AppService],
   controllers: [PrivateController],
 })
 export class AppModule {}

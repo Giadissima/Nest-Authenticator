@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -7,9 +7,11 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @ApiBearerAuth()
 export class PrivateController {
   @ApiTags('private')
+  // decorator needed to make the route private, and only accessible via authentication
   @UseGuards(AuthGuard)
   @Get('private-route')
   privateRoute():string  {
-    return "you have right access to see this message"
+    /* This function allows the user to see a message only if client token is valid (see AuthGuard) */
+    return "you have the right access to see this message"
   }
 }

@@ -11,6 +11,11 @@ export class AuthService {
   ) {}
 
   async signIn(username:string, pass: string): Promise<UserToken> {
+    /**
+     * function that allows users to login if username and password are correct
+     * @param {string} username
+     * @param {string} password
+     */
     const user = await this.usersService.findOne(username);
     if (user?.password !== pass) {
       throw new UnauthorizedException();

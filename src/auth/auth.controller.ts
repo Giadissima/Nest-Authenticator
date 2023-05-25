@@ -12,6 +12,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() data: SignInDto): Promise<UserToken> {
+    // ? "/login" route
     return this.authService.signIn(data.username, data.password);
   }
 }
