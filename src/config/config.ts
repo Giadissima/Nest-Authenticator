@@ -17,15 +17,14 @@ export default (): IEnvironment =>
     environment: process.env.NODE_ENV,
     port: parseInt(process.env.PORT ?? '3000', 10),
     enableSwagger: process.env.ENABLE_SWAGGER == 'true',
-    /* 
-    ? as NomeClasse crea un oggetto che soddisfa quell'interfaccia, senza fare un effettiva validazione,
-    ? nomeObj: <NomeClasse> dà errore se sto instanziando una proprietà che non esiste dentro la classe,
-    ? satisfies NomeClasse valida effettivamente l'oggetto, e deve avere tutte e sole le proprietà espresse 
+    /* SINTAX EXPLAINING
+    ? "as ClassName" creates obj that satisfies that interface, without a real validation,
+    ? "nomeObj: <ClassName>" generates an error if there is a property that doesn't exists inside class,
+    ? "satisfies ClassName" makes a real validation of the object, and it must have only and every property described in the class
     ? nella classe
   */
     jwt: {
-      // TODO perché funziona solo se concateno il secret su una stringa vuota?
-      secret: '' + process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET,
       duration: process.env.JWT_EXPIRES_IN || '7d',
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
     } as JWTConfig
