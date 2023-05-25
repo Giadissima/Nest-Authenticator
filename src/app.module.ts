@@ -6,7 +6,7 @@ import { Module } from '@nestjs/common';
 import { PrivateController } from './private/private.controller';
 import { PrivateModule } from './private/private.module';
 import { UsersModule } from './users/users.module';
-import configuration from './config/config'; // il nome configuration gliel'ho dato in questo momento, posso chiamarlo come voglio
+import configuration from './config/config'; // In this line I'm naming it "configuration"
 
 @Module({
   // ? Configuration of the external modules (imported from libraries)
