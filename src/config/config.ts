@@ -1,8 +1,11 @@
+import { MongooseModuleOptions } from "@nestjs/mongoose";
+
 export interface IEnvironment {
   environment: 'production' | 'development';
   port: number;
   enableSwagger: boolean;
   jwt: JWTConfig;
+  mongoose: MongooseModuleOptions;
 }
 
 export interface JWTConfig {
@@ -27,6 +30,20 @@ export default (): IEnvironment =>
       secret: process.env.JWT_SECRET,
       duration: process.env.JWT_EXPIRES_IN || '7d',
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
-    } satisfies JWTConfig
+    } satisfies JWTConfig,
+    mongoose: <MongooseModuleOptions>{
+      appname: process.env.MONGO_APP_NAME ?? 'Send-Wise',
+      authSource: process.env.MONGO_AUTH_SOURCE ?? 'admin',
+      useNewUrlParser: Boolean(process.env.MONGO_USE_URL_PARSER ?? true),
+      useUnifiedTopology: Boolean(process.env.MONGO_UNIFIED_TOPOLOGY ?? true),
+      autoIndex: Boolean(process.env.MONGO_AUTO_INDEX ?? true),
+      maxPoolSize: parseInt(process.env.MONGO_POOL_SIZE ?? '50'),
+      serverSelectionTimeoutMS: parseInt(
+        process.env.MONGO_SERVER_TIMEOUT ?? '10000',
+        ),
+        ignoreUndefined: true,
+        family: parseInt(process.env.MONGO_IP_FAMILY ?? '4'),
+        uri: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`,
+      },
     
   } as IEnvironment);

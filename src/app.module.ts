@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { PrivateController } from './private/private.controller';
 import { PrivateModule } from './private/private.module';
 import { UsersModule } from './users/users.module';
@@ -27,6 +28,11 @@ import configuration from './config/config'; // In this line I'm naming it "conf
       },
       global: true,
       inject: [ConfigService],
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => config.getOrThrow('mongoose'),
     }),
     AuthModule,
     UsersModule,
