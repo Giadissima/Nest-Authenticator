@@ -3,7 +3,8 @@ import { ApiProperty } from "@nestjs/swagger";
 /**
  * The Dto file contains the description of the client requests
  */
-export class SignInDto {
+// TODO aggiungere validazione
+export class UserCredentialsDto {
   @ApiProperty({
     description: 'username',
     example: 'john'

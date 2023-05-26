@@ -1,18 +1,27 @@
-import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiTags } from '@nestjs/swagger';
-import { SignInDto } from './auth.dto';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { UserCredentialsDto } from './auth.dto';
 import { UserToken } from 'src/users/users.service';
+import { UserDocument } from 'src/users/users.schema';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.OK)
-  @Post('login')
-  signIn(@Body() data: SignInDto): Promise<UserToken> {
-    // ? "/login" route
-    return this.authService.signIn(data.username, data.password);
+  @ApiOkResponse({ description: "Returns the user object found"})
+  @Post('sign-in')
+  signIn(@Body() data: UserCredentialsDto): Promise<UserDocument> {
+    // ? "/sign-in" route
+    return this.authService.signIn(data);
+  }
+
+  @ApiNotFoundResponse({ description: "Bad credentials"})
+  @ApiOkResponse({ description: "Returns the user object created"})
+  @Post('sign-up')
+  signUp(@Body() data: UserCredentialsDto): Promise<UserDocument> {
+    // ? "/sign-up" route
+    return this.authService.signUp(data);
   }
 }
