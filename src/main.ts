@@ -14,13 +14,12 @@ async function bootstrap(): Promise<void> {
   const configService = app.get(ConfigService);
   const isProductionEnv = configService.get('environment') === 'production';
 
-   /* attivazione di Swagger e configurazione*/ 
+   /* configuration and Swagger activation*/ 
    if (configService.get<boolean>('enableSwagger')) {
     const config = new DocumentBuilder()
       .addBearerAuth()
       .setTitle('Middlewares Test API')
       .setVersion(version)
-      // .addBearerAuth();
       if(isProductionEnv) {
         config.addServer('/api');
       }
