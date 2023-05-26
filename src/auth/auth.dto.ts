@@ -17,3 +17,10 @@ export class UserCredentialsDto {
   })
   password: string;
 }
+
+export class AuthenticationResponse {
+  @ApiProperty({
+    description: "Jwt token"
+  })
+  jwt: string
+} 

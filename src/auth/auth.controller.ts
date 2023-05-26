@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { UserCredentialsDto } from './auth.dto';
+import { AuthenticationResponse, UserCredentialsDto } from './auth.dto';
 import { UserToken } from 'src/users/users.service';
 import { UserDocument } from 'src/users/users.schema';
 
@@ -12,7 +12,7 @@ export class AuthController {
 
   @ApiOkResponse({ description: "Returns the user object found"})
   @Post('sign-in')
-  signIn(@Body() data: UserCredentialsDto): Promise<UserDocument> {
+  signIn(@Body() data: UserCredentialsDto): Promise<AuthenticationResponse> {
     // ? "/sign-in" route
     return this.authService.signIn(data);
   }

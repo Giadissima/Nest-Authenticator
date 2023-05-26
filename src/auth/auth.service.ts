@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from 'src/users/users.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { AuthenticationResponse } from './auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -15,13 +16,15 @@ export class AuthService {
   ) {}
 
   // TODO criptare
-  async signIn(credentials: {username:string, password: string}): Promise<UserDocument> {
+  async signIn(credentials: {username:string, password: string}): Promise<AuthenticationResponse> {
     /**
      * function that allows users to login if username and password are correct
      * @param {string} username
      * @param {string} password
      */
-    return this.userModel.findOne(credentials).orFail(new UnauthorizedException('Incorrect username or password'));
+    const user = await this.userModel.findOne(credentials).orFail(new UnauthorizedException('Incorrect username or password'));
+    const payload = { id: user._id, username: user.username };
+    return {jwt: await this.jwtService.signAsync(payload)};
   }
 
   // TODO typeorm
