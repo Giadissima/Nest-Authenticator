@@ -6,7 +6,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @Controller()
 @ApiBearerAuth()
 export class PrivateController {
-  @ApiTags('private')
+  @ApiTags('Private')
   // decorator needed to make the route private, and only accessible via authentication
   @UseGuards(AuthGuard)
   @Get('private-route')

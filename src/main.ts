@@ -25,7 +25,7 @@ async function bootstrap(): Promise<void> {
       }
     const document = SwaggerModule.createDocument(app, config.build());
     SwaggerModule.setup(`/swagger`, app, document, {
-      customSiteTitle: 'Set-Wise API Config',
+      customSiteTitle: 'Nest-Middlewares-with-Swagger',
       swaggerOptions: {
         persistAuthorization: true,
       },

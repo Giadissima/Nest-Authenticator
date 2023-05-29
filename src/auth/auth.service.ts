@@ -1,5 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { UserToken, UsersService } from '../users/users.service';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 // TODO posso cambiare l'import?
 import * as bcrypt from 'bcrypt'
@@ -31,7 +30,6 @@ export class AuthService {
     return {jwt: await this.jwtService.signAsync(payload)};
 }
 
-  // TODO typeorm
   async signUp(credentials: {username: string, password: string}): Promise<UserDocument> {
     /**
      * function that allows users to login if username and password are correct
