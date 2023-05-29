@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
    if (configService.get<boolean>('enableSwagger')) {
     const config = new DocumentBuilder()
       .addBearerAuth()
-      .setTitle('Middlewares Test API')
+      .setTitle('Nest-Middlewares-with-Swagger')
       .setVersion(version)
       if(isProductionEnv) {
         config.addServer('/api');

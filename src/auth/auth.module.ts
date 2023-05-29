@@ -1,3 +1,4 @@
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User, UserSchema } from 'src/users/users.schema';
 
 import { AuthController } from './auth.controller';

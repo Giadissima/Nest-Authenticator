@@ -6,12 +6,20 @@ export interface IEnvironment {
   enableSwagger: boolean;
   jwt: JWTConfig;
   mongoose: MongooseModuleOptions;
+  userDto: UserDto;
 }
 
 export interface JWTConfig {
   secret: string;
   duration: string;
   ignoreExpiration: boolean;
+}
+
+export interface UserDto{
+  usernameMinLenght: number;
+  usernameMaxLenght: number;
+  passwordMinLenght: number;
+  passwordMaxLenght: number;
 }
 
 
@@ -32,7 +40,7 @@ export default (): IEnvironment =>
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
     } satisfies JWTConfig,
     mongoose: <MongooseModuleOptions>{
-      appname: process.env.MONGO_APP_NAME ?? 'Send-Wise',
+      appname: process.env.MONGO_APP_NAME ?? 'Nest-Middlewares-with-Swagger',
       authSource: process.env.MONGO_AUTH_SOURCE ?? 'admin',
       useNewUrlParser: Boolean(process.env.MONGO_USE_URL_PARSER ?? true),
       useUnifiedTopology: Boolean(process.env.MONGO_UNIFIED_TOPOLOGY ?? true),
@@ -45,5 +53,11 @@ export default (): IEnvironment =>
         family: parseInt(process.env.MONGO_IP_FAMILY ?? '4'),
         uri: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`,
       },
+      userDto: <UserDto>{
+        usernameMinLenght: Number(process.env.USER_DTO_USERNAME_MIN_LENGHT ?? 0),
+        usernameMaxLenght: Number(process.env.USER_DTO_USERNAME_MAX_LENGHT ?? 500),
+        passwordMinLenght: Number(process.env.USER_DTO_PASSWORD_MIN_LENGHT ?? 0),
+        passwordMaxLenght: Number(process.env.USER_DTO_PASSWORD_MAX_LENGHT ?? 500),
+      }
     
   } as IEnvironment);

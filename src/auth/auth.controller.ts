@@ -2,9 +2,13 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthenticationResponse, UserCredentialsDto } from './auth.dto';
-import { UserToken } from 'src/users/users.service';
 import { UserDocument } from 'src/users/users.schema';
+import configFn from 'src/config/config'
 
+// ? modo per importare e chiamare la funzione dentro a config
+const userDto = configFn();
+
+console.log(userDto);
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
