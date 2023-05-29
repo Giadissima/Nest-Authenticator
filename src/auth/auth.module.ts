@@ -10,6 +10,7 @@ import { UsersModule } from '../users/users.module';
 @Module({
   imports: [
     UsersModule,
+    ConfigModule,
     MongooseModule.forFeature([{name: User.name, schema: UserSchema }])
   ],
   providers: [AuthService],

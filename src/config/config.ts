@@ -7,6 +7,7 @@ export interface IEnvironment {
   jwt: JWTConfig;
   mongoose: MongooseModuleOptions;
   userDto: UserDto;
+  bcryptSalt: string;
 }
 
 export interface JWTConfig {
@@ -58,6 +59,6 @@ export default (): IEnvironment =>
         usernameMaxLenght: Number(process.env.USER_DTO_USERNAME_MAX_LENGHT ?? 500),
         passwordMinLenght: Number(process.env.USER_DTO_PASSWORD_MIN_LENGHT ?? 0),
         passwordMaxLenght: Number(process.env.USER_DTO_PASSWORD_MAX_LENGHT ?? 500),
-      }
-    
+      },
+      bcryptSalt: process.env.BCRYPT_SALT
   } as IEnvironment);
