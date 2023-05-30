@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Portable project in [Nest](https://github.com/nestjs/nest) to create routes only accessible through Jwt Authentication. It also connects with Mongo Db and hashes users' passwords with Bcrypt library.
 
 ## Installation
 
@@ -45,35 +45,58 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Env variables
 
-```bash
-# unit tests
-$ npm run test
+### General settings
 
-# e2e tests
-$ npm run test:e2e
+NODE_ENV
 
-# test coverage
-$ npm run test:cov
-```
+PORT
 
-## Support
+ENABLE_SWAGGER
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+APP_NAME
 
-## Stay in touch
+### Jwt configuration
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+JWT_SECRET
 
-## License
+JWT_EXPIRES_IN
 
-Nest is [MIT licensed](LICENSE).
+JWT_IGNORE_EXP
+
+### Mongo settings
+
+**MONGO_AUTH_SOURCE**.Specify the database name associated with the user’s credentials. **Default value:** admin
+
+**MONGO_USE_URL_PARSER**
+
+
+MONGO_UNIFIED_TOPOLOGY = 
+
+### MONGO_AUTO_INDEX
+
+> Set to false to disable automatic index creation for all models associated with this connection
+**Default value:** true
+
+MONGO_POOL_SIZE = 
+
+MONGO_SERVER_TIMEOUT = 
+
+MONGO_IP_FAMILY = 
+
+### User Dto parameters configuration
+USER_DTO_USERNAME_MIN_LENGHT
+USER_DTO_USERNAME_MAX_LENGHT
+USER_DTO_PASSWORD_MIN_LENGHT
+USER_DTO_PASSWORD_MAX_LENGHT
+.BCRYPT_SALT
+
 
 ## da inserire
 
 consigliato l'utilizzo dell'estensione "Better comment"
 
 utilizzo mongodb
+
+aggiungere parametri d'env
