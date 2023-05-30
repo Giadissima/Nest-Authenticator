@@ -51,10 +51,10 @@ In case you're using Vs-Code as you're IDE, make sure you've "[Better comments](
 
 ## MongoDb
 
-MongoDb è un database molto potente e semplice da usare.
-Per poter scaricare il database sulla tua macchina guarda questo [link](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/). Dopo avere correttamente installato MongoDb non dovrai fare altro che scaricare [MongoDb Compass](https://www.mongodb.com/products/compass), un ambiente grafico per poter creare tramite nuovi databases, collections (similar to "tables") e documents (similar to "rows"). Consiglio quindi di scaricare Compass come applicazione di Test da poter usare sul tuo computer.
+MongoDb is a very powerful and simple to use database.
+To be able to download the database to your machine look at this [link](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/). After having correctly installed MongoDb, all you have to do is download [MongoDb Compass](https://www.mongodb.com/products/compass), a graphical environment to be able to create new databases, collections (similar to "tables") and documents (similar to "rows"). I therefore recommend downloading Compass as a Test application that you can use on your computer.
 
-Per poter infine connettere il database a questa applicazione, ti basterà inserire correttamente le [variabili d'ambiente](https://github.com/Giadissima/Nest-Authenticator#env-variables) come descritto sotto
+Finally, in order to connect the database to this application, you just need to correctly insert the [environment variables](https://github.com/Giadissima/Nest-Authenticator#env-variables) as described below
 
 ## Env variables
 
@@ -84,12 +84,12 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 
 ### JWT_EXPIRES_IN
 
-> Sceglie quando far scadere il token jwt  
+> Choose when to expire the jwt token  
 **Default value:** seven days ("7d")
 
 ### JWT_IGNORE_EXP
 
-> Sceglie se il token, anche se scaduto, può essere comunque utilizzato per accedere alle route private. Può essere utile settarlo a true nel ambiente di sviluppo  
+> Choose whether the token, even if expired, can still be used to access private routes. It may be useful to set it to true in the development environment  
 **Default value:** false
 
 ### MONGO_AUTH_SOURCE
@@ -99,7 +99,7 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 
 ### MONGO_APP_NAME
 
-> Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.  
+> Set the name of the application that is interacting with the database. In case of an error, the database will give the name of the app on which it occurred. Therefore useful in case the database is used by several applications.  
 **Default value:** Nest-Middlewares-with-Swagger
 
 ### MONGO_AUTO_INDEX
@@ -145,7 +145,3 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 ### BCRYPT_SALT
 
 > Specifies the salt for hashing password. Salt is a very important string (is similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
-
-## da inserire TODO
-
-// TODO cambiare lingua
