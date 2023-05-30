@@ -65,17 +65,17 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 
 ### PORT
 
-> Specify the port where server will listen and waiting for clients' responses
+> Specify the port where server will listen and waiting for clients' responses  
 **Default value:** 3000
 
 ### ENABLE_SWAGGER
 
-> Boolean variable that allows you to turn on and off Swagger API. (In production environment automatically turned off)
+> Boolean variable that allows you to turn on and off Swagger API. (In production environment automatically turned off)  
 **Default value:** false
 
 ### APP_NAME
 
-> Setting app's name.
+> Setting app's name.  
 **Default value:** Nest-Middlewares-with-Swagger
 
 ### JWT_SECRET
@@ -84,12 +84,12 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 
 ### JWT_EXPIRES_IN
 
-> Sceglie quando far scadere il token jwt
+> Sceglie quando far scadere il token jwt  
 **Default value:** seven days ("7d")
 
 ### JWT_IGNORE_EXP
 
-> Sceglie se il token, anche se scaduto, può essere comunque utilizzato per accedere alle route private. Può essere utile settarlo a true nel ambiente di sviluppo
+> Sceglie se il token, anche se scaduto, può essere comunque utilizzato per accedere alle route private. Può essere utile settarlo a true nel ambiente di sviluppo  
 **Default value:** false
 
 ### MONGO_AUTH_SOURCE
@@ -109,37 +109,37 @@ Per poter infine connettere il database a questa applicazione, ti basterà inser
 
 ### MONGO_POOL_SIZE
 
-> Select the maximum number of database connections that can be open at the same time
+> Select the maximum number of database connections that can be open at the same time  
 **Default value:** 50
 
 ### MONGO_SERVER_TIMEOUT
 
-> Specifies how long (in milliseconds) to block for server selection before throwing an exception.
+> Specifies how long (in milliseconds) to block for server selection before throwing an exception.  
 **Default value:** 10000
 
 ### MONGO_IP_FAMILY
 
-> specifies whether your application that will talk to the database will have an ipv4 or ipv6
+> specifies whether your application that will talk to the database will have an ipv4 or ipv6  
 **Default value:** 4
 
 ### USER_DTO_USERNAME_MIN_LENGHT
 
-> Minimum lenght of the username string received by the client
+> Minimum lenght of the username string received by the client  
 **Default value:** 0
 
 ### USER_DTO_USERNAME_MAX_LENGHT
 
-> Maximum lenght of the username string received by the client
+> Maximum lenght of the username string received by the client  
 **Default value:** 500
 
 ### USER_DTO_PASSWORD_MIN_LENGHT
 
-> Minimum lenght of the password string received by the client
+> Minimum lenght of the password string received by the client  
 **Default value:** 0
 
 ### USER_DTO_PASSWORD_MAX_LENGHT
 
-> Maximum lenght of the password string received by the client
+> Maximum lenght of the password string received by the client  
 **Default value:** 500
 
 ### BCRYPT_SALT
