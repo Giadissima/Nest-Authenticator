@@ -2,6 +2,7 @@ import { MongooseModuleOptions } from "@nestjs/mongoose";
 
 export interface IEnvironment {
   environment: 'production' | 'development';
+  appName: string;
   port: number;
   enableSwagger: boolean;
   jwt: JWTConfig;
@@ -39,11 +40,11 @@ export default (): IEnvironment =>
       duration: process.env.JWT_EXPIRES_IN || '7d',
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
     },
+    // TODO posso evitare la duplicazione di appname?
+    appName: process.env.APP_NAME ??  'Nest-Middlewares-with-Swagger',
     mongoose: <MongooseModuleOptions>{
-      appname: process.env.MONGO_APP_NAME ?? 'Nest-Middlewares-with-Swagger',
+      appName: process.env.APP_NAME ??  'Nest-Middlewares-with-Swagger',
       authSource: process.env.MONGO_AUTH_SOURCE ?? 'admin',
-      useNewUrlParser: Boolean(process.env.MONGO_USE_URL_PARSER ?? true),
-      useUnifiedTopology: Boolean(process.env.MONGO_UNIFIED_TOPOLOGY ?? true),
       autoIndex: Boolean(process.env.MONGO_AUTO_INDEX ?? true),
       maxPoolSize: parseInt(process.env.MONGO_POOL_SIZE ?? '50'),
       serverSelectionTimeoutMS: parseInt(
