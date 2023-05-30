@@ -47,9 +47,10 @@ $ npm run start:prod
 
 ## Env variables
 
-### General settings
+### NODE_ENV
 
-NODE_ENV
+> Specify if you're using this app in production or development environment  
+**Default value:** development
 
 PORT
 
@@ -57,30 +58,27 @@ ENABLE_SWAGGER
 
 APP_NAME
 
-### Jwt configuration
+### JWT_SECRET
 
-JWT_SECRET
+>Specify the jwt secret for generating new tokens and validate old tokens. **Make sure of not leave this env variable empty for avoid security breach**
 
 JWT_EXPIRES_IN
 
 JWT_IGNORE_EXP
 
-
-### Mongo settings
-
-#### MONGO_AUTH_SOURCE
+### MONGO_AUTH_SOURCE
 
 >Specify the database name associated with the user’s credentials.  
 **Default value:** admin
 
-#### MONGO_APP_NAME
+### MONGO_APP_NAME
 
->Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni. __
+>Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.  
 **Default value:** Nest-Middlewares-with-Swagger
 
 #### MONGO_AUTO_INDEX
 
-> Set to false to disable automatic index creation for all models associated with this connection.__
+> Set to false to disable automatic index creation for all models associated with this connection.  
 **Default value:** true
 
 MONGO_POOL_SIZE = 
