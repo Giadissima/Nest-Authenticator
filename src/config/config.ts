@@ -38,6 +38,7 @@ export default (): IEnvironment =>
     jwt: <JWTConfig>{
       secret: process.env.JWT_SECRET,
       duration: process.env.JWT_EXPIRES_IN || '7d',
+      // TODO chiedere se ignore expiration serve per dare unauthorized nel momento in cui il token scade
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
     },
     // TODO posso evitare la duplicazione di appName?

@@ -52,28 +52,45 @@ $ npm run start:prod
 > Specify if you're using this app in production or development environment  
 **Default value:** development
 
-PORT
+### PORT
 
-ENABLE_SWAGGER
+> Specify the port where server will listen and waiting for clients' responses
+**Default value:** 3000
 
-APP_NAME
+### ENABLE_SWAGGER
+
+> Boolean variable that allows you to turn on and off Swagger API. (In production environment automatically turned off)
+**Default value:** false
+
+
+### APP_NAME
+
+> Setting app's name.
+**Default value:** Nest-Middlewares-with-Swagger
+
 
 ### JWT_SECRET
 
->Specify the jwt secret for generating new tokens and validate old tokens. **Make sure of not leave this env variable empty for avoid security breach**
+> Specify the jwt secret for generating new tokens and validate old tokens. **Make sure of not leave this env variable empty for avoid security breach**
 
-JWT_EXPIRES_IN
+### JWT_EXPIRES_IN
 
-JWT_IGNORE_EXP
+> Sceglie quando far scadere il token jwt
+**Default value:** seven days ("7d")
+
+### JWT_IGNORE_EXP
+ 
+> Sceglie se il token, anche se scaduto, può essere comunque utilizzato per accedere alle route private. Può essere utile settarlo a true nel ambiente di sviluppo
+**Default value:** false
 
 ### MONGO_AUTH_SOURCE
 
->Specify the database name associated with the user’s credentials.  
+> Specify the database name associated with the user’s credentials.  
 **Default value:** admin
 
 ### MONGO_APP_NAME
 
->Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.  
+> Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.  
 **Default value:** Nest-Middlewares-with-Swagger
 
 #### MONGO_AUTO_INDEX
@@ -81,26 +98,49 @@ JWT_IGNORE_EXP
 > Set to false to disable automatic index creation for all models associated with this connection.  
 **Default value:** true
 
-MONGO_POOL_SIZE = 
+### MONGO_POOL_SIZE
 
-MONGO_SERVER_TIMEOUT = 
+> Select the maximum number of database connections that can be open at the same time
+**Default value:** 50
 
-MONGO_IP_FAMILY = 
+### MONGO_SERVER_TIMEOUT
 
-### User Dto parameters configuration
-USER_DTO_USERNAME_MIN_LENGHT
-USER_DTO_USERNAME_MAX_LENGHT
-USER_DTO_PASSWORD_MIN_LENGHT
-USER_DTO_PASSWORD_MAX_LENGHT
-.BCRYPT_SALT
+> Specifies how long (in milliseconds) to block for server selection before throwing an exception.
+**Default value:** 10000
 
+### MONGO_IP_FAMILY
 
-## da inserire
+> specifies whether your application that will talk to the database will have an ipv4 or ipv6
+**Default value:** 4
+
+### USER_DTO_USERNAME_MIN_LENGHT
+
+> Minimum lenght of the username string received by the client
+**Default value:** 0
+
+### USER_DTO_USERNAME_MAX_LENGHT
+
+> Maximum lenght of the username string received by the client
+**Default value:** 500
+
+### USER_DTO_PASSWORD_MIN_LENGHT
+
+> Minimum lenght of the password string received by the client
+**Default value:** 0
+
+### USER_DTO_PASSWORD_MAX_LENGHT
+
+> Maximum lenght of the password string received by the client
+**Default value:** 500
+
+### BCRYPT_SALT
+
+> Specifies the salt for hashing password. Salt is a very important string (is similar to Jwt secret, writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
+
+## da inserire TODO
 
 consigliato l'utilizzo dell'estensione "Better comment"
 
 utilizzo mongodb
-
-aggiungere parametri d'env
 
 // TODO cambiare lingua
