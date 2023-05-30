@@ -47,14 +47,14 @@ $ npm run start:prod
 
 ## Recommended
 
-In case you're using Vs-Code as you're IDE, make sure you've "Better comments" extension installed to improve you're coding experience
+In case you're using Vs-Code as you're IDE, make sure you've "[Better comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)" extension installed to improve you're coding experience
 
 ## MongoDb
 
 MongoDb è un database molto potente e semplice da usare.
-Per poter scaricare il database sulla tua macchina guarda questo [link](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/). Dopo avere correttamente installato MongoDb non dovrai fare altro che scaricare [MongoDb Compass](https://www.mongodb.com/products/compass), un IDE grafico per poter creare tramite ambiente grafico nuovi database, collection (similar to "tables") e document (similar to "rows"). Consiglio quindi di scaricare Compass come applicazione di Test da poter mettere nel tuo computer.
+Per poter scaricare il database sulla tua macchina guarda questo [link](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/). Dopo avere correttamente installato MongoDb non dovrai fare altro che scaricare [MongoDb Compass](https://www.mongodb.com/products/compass), un ambiente grafico per poter creare tramite nuovi databases, collections (similar to "tables") e documents (similar to "rows"). Consiglio quindi di scaricare Compass come applicazione di Test da poter usare sul tuo computer.
 
-Per poter infine connettere il database alla tua applicazione, ti basta inserire correttamente le [variabili d'ambiente](https://github.com/Giadissima/Nest-Authenticator#env-variables) come descritto sotto
+Per poter infine connettere il database a questa applicazione, ti basterà inserire correttamente le [variabili d'ambiente](https://github.com/Giadissima/Nest-Authenticator#env-variables) come descritto sotto
 
 ## Env variables
 
@@ -147,7 +147,5 @@ Per poter infine connettere il database alla tua applicazione, ti basta inserire
 > Specifies the salt for hashing password. Salt is a very important string (is similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
 
 ## da inserire TODO
-
-utilizzo mongodb
 
 // TODO cambiare lingua
