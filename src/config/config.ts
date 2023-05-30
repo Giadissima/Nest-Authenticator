@@ -32,6 +32,7 @@ export interface UserDto{
 */
 export default (): IEnvironment =>
   ({
+    // TODO controllare la lingua inglese sul readme
     environment: process.env.NODE_ENV,
     port: parseInt(process.env.PORT ?? '3000', 10),
     enableSwagger: process.env.ENABLE_SWAGGER == 'true',
