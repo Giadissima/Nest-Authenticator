@@ -24,7 +24,7 @@
 
 ## Description
 
-Portable project in [Nest](https://github.com/nestjs/nest) to create routes only accessible through Jwt Authentication. It also connects with Mongo Db and hashes users' passwords with Bcrypt library.
+Portable project in [Nest](https://github.com/nestjs/nest) to create routes only accessible through [Jwt Authentication](https://docs.nestjs.com/security/authentication#jwt-token). It also connects with [Mongo Db](https://www.mongodb.com/it-it) and hashes users' passwords with [Bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) library.
 
 ## Installation
 
@@ -93,7 +93,7 @@ $ npm run start:prod
 > Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.  
 **Default value:** Nest-Middlewares-with-Swagger
 
-#### MONGO_AUTO_INDEX
+### MONGO_AUTO_INDEX
 
 > Set to false to disable automatic index creation for all models associated with this connection.  
 **Default value:** true
@@ -135,7 +135,7 @@ $ npm run start:prod
 
 ### BCRYPT_SALT
 
-> Specifies the salt for hashing password. Salt is a very important string (is similar to Jwt secret, writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
+> Specifies the salt for hashing password. Salt is a very important string (is similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
 
 ## da inserire TODO
 
