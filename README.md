@@ -74,4 +74,6 @@ Nest is [MIT licensed](LICENSE).
 
 ## da inserire
 
-utilizzo di typeorm per poter cambiare velocemente database di utilizzo e per maggiore flessibilità
+consigliato l'utilizzo dell'estensione "Better comment"
+
+utilizzo mongodb

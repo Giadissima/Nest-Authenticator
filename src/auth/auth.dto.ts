@@ -3,14 +3,14 @@ import { IsString, Length } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import configFn from 'src/config/config'
 
-// ? modo per importare e chiamare la funzione dentro a config
+// ? this line import config file without dependecy injection
 const userDto = configFn().userDto;
 if(!userDto) throw new NotFoundError("CONFIG FILE NOT INITIALIZED")
-/**
- * The Dto file contains the description of the client requests
- */
+
 //TODO fixare l'errore che il config non prende i valori dal .env
-// non li sta prendendo dal process.env
+/**
+ * The Dto file contains the description of the client requests and the server's responses
+ */
 export class UserCredentialsDto {
   @IsString()
   @Length(userDto.usernameMinLenght, userDto.usernameMaxLenght)

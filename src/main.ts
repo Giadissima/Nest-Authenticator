@@ -12,10 +12,10 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
-  const isProductionEnv = configService.get('environment') === 'production';
+  const isProductionEnv = configService.getOrThrow('environment') === 'production';
 
    /* configuration and Swagger activation*/ 
-   if (configService.get<boolean>('enableSwagger')) {
+   if (configService.getOrThrow<boolean>('enableSwagger')) {
     const config = new DocumentBuilder()
       .addBearerAuth()
       .setTitle('Nest-Middlewares-with-Swagger')

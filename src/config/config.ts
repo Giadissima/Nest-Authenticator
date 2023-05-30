@@ -23,23 +23,22 @@ export interface UserDto{
   passwordMaxLenght: number;
 }
 
-
+/* 
+  SINTAX EXPLAINING
+  ? "as ClassName" creates obj that satisfies that interface, without a real validation,
+  ? "nomeObj: <ClassName>" generates an error if nomeObj contains a property that doesn't exists inside ClassName,
+  ? "satisfies ClassName" makes a real validation of the object, to make sure it has all properties described in class
+*/
 export default (): IEnvironment =>
   ({
     environment: process.env.NODE_ENV,
     port: parseInt(process.env.PORT ?? '3000', 10),
     enableSwagger: process.env.ENABLE_SWAGGER == 'true',
-    /* 
-    SINTAX EXPLAINING
-    ? "as ClassName" creates obj that satisfies that interface, without a real validation,
-    ? "nomeObj: <ClassName>" generates an error if nomeObj contains a property that doesn't exists inside ClassName,
-    ? "satisfies ClassName" makes a real validation of the object, to make sure it has all and only properties described in class
-  */
-    jwt: {
+    jwt: <JWTConfig>{
       secret: process.env.JWT_SECRET,
       duration: process.env.JWT_EXPIRES_IN || '7d',
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
-    } satisfies JWTConfig,
+    },
     mongoose: <MongooseModuleOptions>{
       appname: process.env.MONGO_APP_NAME ?? 'Nest-Middlewares-with-Swagger',
       authSource: process.env.MONGO_AUTH_SOURCE ?? 'admin',

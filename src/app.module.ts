@@ -6,7 +6,6 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PrivateController } from './private/private.controller';
 import { PrivateModule } from './private/private.module';
-import { UsersModule } from './users/users.module';
 import configuration from './config/config'; // In this line I'm naming it "configuration"
 
 @Module({
@@ -35,7 +34,6 @@ import configuration from './config/config'; // In this line I'm naming it "conf
       useFactory: (config: ConfigService) => config.getOrThrow('mongoose'),
     }),
     AuthModule,
-    UsersModule,
     PrivateModule,],
   controllers: [PrivateController],
 })

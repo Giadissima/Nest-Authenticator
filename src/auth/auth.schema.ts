@@ -4,6 +4,7 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
+// This file contains User schema for MongoDB
 @Schema({
   collection: 'users',
   collation: { locale: 'it', caseFirst: 'off', strength: 1 },

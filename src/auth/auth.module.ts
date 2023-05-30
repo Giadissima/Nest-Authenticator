@@ -1,15 +1,13 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { User, UserSchema } from 'src/users/users.schema';
+import { User, UserSchema } from 'src/auth/auth.schema';
 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
-    UsersModule,
     ConfigModule,
     MongooseModule.forFeature([{name: User.name, schema: UserSchema }])
   ],
