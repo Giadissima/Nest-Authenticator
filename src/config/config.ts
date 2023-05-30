@@ -40,7 +40,7 @@ export default (): IEnvironment =>
       duration: process.env.JWT_EXPIRES_IN || '7d',
       ignoreExpiration: process.env.JWT_IGNORE_EXP == 'true',
     },
-    // TODO posso evitare la duplicazione di appname?
+    // TODO posso evitare la duplicazione di appName?
     appName: process.env.APP_NAME ??  'Nest-Middlewares-with-Swagger',
     mongoose: <MongooseModuleOptions>{
       appName: process.env.APP_NAME ??  'Nest-Middlewares-with-Swagger',

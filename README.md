@@ -65,18 +65,22 @@ JWT_EXPIRES_IN
 
 JWT_IGNORE_EXP
 
+
 ### Mongo settings
 
-**MONGO_AUTH_SOURCE**.Specify the database name associated with the user’s credentials. **Default value:** admin
+#### MONGO_AUTH_SOURCE
 
-**MONGO_USE_URL_PARSER**
+>Specify the database name associated with the user’s credentials.__
+**Default value:** admin
 
+#### MONGO_APP_NAME
 
-MONGO_UNIFIED_TOPOLOGY = 
+>Setta il nome dell'applicazione che sta interagendo con il database. In caso di errore, il database darà il nome dell'app su cui si è verificata. Utile quindi in caso il database venga utilizzato da più applicazioni.__
+**Default value:** Nest-Middlewares-with-Swagger
 
-### MONGO_AUTO_INDEX
+#### MONGO_AUTO_INDEX
 
-> Set to false to disable automatic index creation for all models associated with this connection
+> Set to false to disable automatic index creation for all models associated with this connection.__
 **Default value:** true
 
 MONGO_POOL_SIZE = 
@@ -100,3 +104,5 @@ consigliato l'utilizzo dell'estensione "Better comment"
 utilizzo mongodb
 
 aggiungere parametri d'env
+
+// TODO cambiare lingua
