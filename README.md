@@ -24,7 +24,7 @@
 
 ## Description
 
-Portable project in [Nest](https://github.com/nestjs/nest) to create routes only accessible through [Jwt Authentication](https://docs.nestjs.com/security/authentication#jwt-token). It also connects with [Mongo Db](https://www.mongodb.com/it-it) and hashes users' passwords with [Bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) library.
+Portable project in [Nest](https://github.com/nestjs/nest) to create routes only accessible through [Jwt Authentication](https://docs.nestjs.com/security/authentication#jwt-token). It also connects with [Mongo Db](https://www.mongodb.com/it-it) and hashes users' passwords with [Bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) library. Use of [Swagger](https://docs.nestjs.com/openapi/introduction) to create important test's API (without use external software like [Postman](https://www.postman.com/))
 
 ## Installation
 
@@ -45,6 +45,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Recommended
+
+In case you're using Vs-Code as you're IDE, make sure you've "Better comments" extension installed to improve you're coding experience
+
 ## Env variables
 
 ### NODE_ENV
@@ -62,12 +66,10 @@ $ npm run start:prod
 > Boolean variable that allows you to turn on and off Swagger API. (In production environment automatically turned off)
 **Default value:** false
 
-
 ### APP_NAME
 
 > Setting app's name.
 **Default value:** Nest-Middlewares-with-Swagger
-
 
 ### JWT_SECRET
 
@@ -79,7 +81,7 @@ $ npm run start:prod
 **Default value:** seven days ("7d")
 
 ### JWT_IGNORE_EXP
- 
+
 > Sceglie se il token, anche se scaduto, può essere comunque utilizzato per accedere alle route private. Può essere utile settarlo a true nel ambiente di sviluppo
 **Default value:** false
 
@@ -138,8 +140,6 @@ $ npm run start:prod
 > Specifies the salt for hashing password. Salt is a very important string (is similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
 
 ## da inserire TODO
-
-consigliato l'utilizzo dell'estensione "Better comment"
 
 utilizzo mongodb
 
