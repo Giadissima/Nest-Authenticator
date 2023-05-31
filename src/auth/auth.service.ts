@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 // TODO posso cambiare l'import?
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserDocument } from 'src/auth/auth.schema';
+import { Auth, AuthDocument } from 'src/auth/auth.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AuthenticationResponse } from './auth.dto';
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private configService: ConfigService,
-    @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(Auth.name) private userModel: Model<Auth>,
   ) {}
 
   async signIn(credentials: {
