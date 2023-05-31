@@ -42,16 +42,18 @@ export class AuthService {
   async signUp(credentials: {
     username: string;
     password: string;
-  }): Promise<UserDocument> {
+  }): Promise<string> {
     /**
      * function that allows users to login if username and password are correct
      * @param {string} username
      * @param {string} password
+     * @return {string} "Success"
      */
     credentials.password = await bcrypt.hash(
       credentials.password,
       this.configService.getOrThrow('bcrypt_salt'),
     );
-    return new this.userModel({ ...credentials }).save();
+    new this.userModel({ ...credentials }).save();
+    return "Success";
   }
 }

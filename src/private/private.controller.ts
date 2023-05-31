@@ -7,8 +7,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @ApiBearerAuth()
 export class PrivateController {
   @ApiTags('Private')
-  // decorator needed to make the route private, and only accessible via authentication
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard) // decorator needed to make the route private, and only accessible via authentication
   @Get('private-route')
   privateRoute():string  {
     /* This function allows the user to see a message only if client token is valid (see AuthGuard) */

@@ -144,4 +144,4 @@ Finally, in order to connect the database to this application, you just need to 
 
 ### BCRYPT_SALT
 
-> Specifies the salt for hashing password. Salt is a very important string (is similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above), **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
+> Specifies the salt for hashing password. Salt is a very important string, similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above, **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
