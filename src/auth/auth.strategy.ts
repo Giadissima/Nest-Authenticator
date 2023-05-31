@@ -1,10 +1,10 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { IUserAuth, UserAuth } from './user-auth';
 
 import { ConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
-import { JWTConfig } from 'src/config/configuration';
+import { JWTConfig } from 'src/config/config';
 import { PassportStrategy } from '@nestjs/passport';
+import { UserAuth } from './user-auth';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'JwtStrategy') {
@@ -17,7 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'JwtStrategy') {
     });
   }
 
-  validate(req: Request, payload: IUserAuth) {
+  validate(payload: UserAuth): UserAuth {
     return new UserAuth(payload);
   }
 }

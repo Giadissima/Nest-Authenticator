@@ -2,7 +2,7 @@
 
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 
-import { IUserAuth } from './user-auth';
+import { UserAuth } from './user-auth';
 
 /**
  * Use this annotation to retrieve the user information from the current
@@ -16,6 +16,6 @@ import { IUserAuth } from './user-auth';
 export const User = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
-    return request.user as IUserAuth;
+    return request.user as UserAuth;
   },
 );

@@ -1,6 +1,8 @@
 import { IsString, Length } from "class-validator";
 
 import { ApiProperty } from "@nestjs/swagger";
+import { NotFoundError } from "src/errors";
+import { UserAuth } from "./user-auth";
 import configFn from 'src/config/config'
 
 // ? this line import config file without dependecy injection
@@ -31,7 +33,7 @@ export class UserCredentialsDto {
 
 export class AuthenticationResponse {
   @ApiProperty({
-    description: "Jwt token"
+    description: "contains User's data adn jwt token"
   })
-  jwt: string
+  payload: string;
 } 

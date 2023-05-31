@@ -3,19 +3,21 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 // TODO posso cambiare l'import?
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Auth, AuthDocument } from 'src/auth/auth.schema';
+import { Auth } from 'src/auth/auth.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AuthenticationResponse } from './auth.dto';
 import { ConfigService } from '@nestjs/config';
+import { JWTConfig } from 'src/config/config';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private jwtService: JwtService,
     private configService: ConfigService,
+    private readonly jwtService: JwtService,
     @InjectModel(Auth.name) private userModel: Model<Auth>,
-  ) {}
+    ) {}
+  private readonly jwtConfig: JWTConfig = this.configService.getOrThrow('jwt');
 
   async signIn(credentials: {
     username: string;
@@ -34,15 +36,20 @@ export class AuthService {
     const user = await this.userModel
       .findOne(credentials)
       .orFail(new UnauthorizedException('Incorrect username or password'));
-    // TODO perché ci viene inserita anche la password?
-    const payload = { id: user._id, username: user.username };
-    return { jwt: await this.jwtService.signAsync(payload) };
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const payload = { _id: user._id, username: user.username };
+    return {
+      payload: this.jwtService.sign(payload, {
+        expiresIn: this.jwtConfig.duration,
+        secret: this.jwtConfig.secret,
+      }),
+    };
   }
 
   async signUp(credentials: {
     username: string;
     password: string;
-  }): Promise<string> {
+  }): Promise<AuthenticationResponse> {
     /**
      * function that allows users to login if username and password are correct
      * @param {string} username
@@ -53,7 +60,14 @@ export class AuthService {
       credentials.password,
       this.configService.getOrThrow('bcrypt_salt'),
     );
-    new this.userModel({ ...credentials }).save();
-    return "Success";
+    const user = await new this.userModel({ ...credentials }).save();
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const payload = { _id: user._id, username: user.username };
+    return {
+      payload: this.jwtService.sign(payload, {
+        expiresIn: this.jwtConfig.duration,
+        secret: this.jwtConfig.secret,
+      }),
+    };
   }
 }

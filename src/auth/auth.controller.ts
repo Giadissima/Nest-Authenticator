@@ -4,7 +4,7 @@ import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiTags } f
 import { AuthenticationResponse, UserCredentialsDto } from './auth.dto';
 import { Public } from './auth.guard';
 import { User } from './user.metadata';
-import { IUserAuth } from './user-auth';
+import { UserAuth } from './user-auth';
 
 @ApiTags('Users')
 @Controller('auth')
@@ -25,7 +25,7 @@ export class AuthController {
   @ApiOkResponse({ description: "Returns the user object created", type: String}) // TODO va bene il type?
   @ApiBody({ required: true, type: UserCredentialsDto })
   @Post('sign-up')
-  signUp(@Body() data: UserCredentialsDto): Promise<string> {
+  signUp(@Body() data: UserCredentialsDto): Promise<AuthenticationResponse> {
     // ? "/sign-up" route
     return this.authService.signUp(data);
   }
@@ -37,8 +37,9 @@ export class AuthController {
     return { message: 'goodbye!' };
   }
 
+  // TODO non mi fa nulla
   @Get('/me')
-  me(@User() user: IUserAuth): IUserAuth {
+  me(@User() user: UserAuth): UserAuth {
     return user;
   }
 
