@@ -8,9 +8,7 @@ const userDto = configFn().userDto;
 if(!userDto) throw new NotFoundError("CONFIG FILE NOT INITIALIZED")
 
 //TODO fixare l'errore che il config non prende i valori dal .env
-/**
- * The Dto file contains the description of the client requests and the server's responses
- */
+/** The Dto file contains the description of the client requests and the server's responses*/
 export class UserCredentialsDto {
   @IsString()
   @Length(userDto.usernameMinLenght, userDto.usernameMaxLenght)

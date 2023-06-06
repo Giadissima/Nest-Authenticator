@@ -7,22 +7,22 @@ import { NestFactory } from '@nestjs/core';
 
 const { version } = require('../package.json');
 
-
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const configService = app.get(ConfigService);
-  const isProductionEnv = configService.getOrThrow('environment') === 'production';
+  const isProductionEnv =
+    configService.getOrThrow('environment') === 'production';
 
-   /* configuration and Swagger activation*/ 
-   if (configService.getOrThrow<boolean>('enableSwagger')) {
+  /* configuration and Swagger activation*/
+  if (configService.getOrThrow<boolean>('enableSwagger')) {
     const config = new DocumentBuilder()
       .addBearerAuth()
       .setTitle(configService.getOrThrow<string>('appName'))
-      .setVersion(version)
-      if(isProductionEnv) {
-        config.addServer('/api');
-      }
+      .setVersion(version);
+    if (isProductionEnv) {
+      config.addServer('/api');
+    }
     const document = SwaggerModule.createDocument(app, config.build());
     SwaggerModule.setup(`/swagger`, app, document, {
       customSiteTitle: 'Nest-Middlewares-with-Swagger',
@@ -30,12 +30,11 @@ async function bootstrap(): Promise<void> {
         persistAuthorization: true,
       },
       customCss: `
-          .swagger-ui .topbar { display: none; }
-          .swagger-ui .info .title::before { display: inline-block; width: 226px; height: 65px; margin: -50px 0; position: relative; content: ''; vertical-align: middle; background-size: contain; background-repeat: no-repeat; background-position: left center; background-image: url(https://log-in.benetti.3logic.it/assets/img/logo.png); }
-          `,
+        .swagger-ui .topbar { display: none; }
+        .swagger-ui .info .title::before { display: inline-block; width: 226px; height: 65px; margin: -50px 0; position: relative; content: ''; vertical-align: middle; background-size: contain; background-repeat: no-repeat; background-position: left center; background-image: url(https://log-in.benetti.3logic.it/assets/img/logo.png); }
+        `,
     });
   }
-
   await app.listen(3000);
 }
 bootstrap();

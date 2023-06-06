@@ -9,8 +9,8 @@ export class PrivateController {
   @ApiTags('Private')
   @UseGuards(AuthGuard) // decorator needed to make the route private, and only accessible via authentication
   @Get('private-route')
+  /* This function allows the user to see a message only if client token is valid (see AuthGuard) */
   privateRoute():string  {
-    /* This function allows the user to see a message only if client token is valid (see AuthGuard) */
     return "you have the right access to see this message"
   }
 }

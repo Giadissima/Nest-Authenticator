@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 // TODO posso cambiare l'import?
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserDocument } from 'src/auth/auth.schema';
+import { User } from 'src/auth/auth.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AuthenticationResponse } from './auth.dto';
@@ -17,15 +17,14 @@ export class AuthService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
+  /**
+   * function that allows users to login if username and password are correct.
+   * @returns {AuthenticationResponse} jwt token string
+   */
   async signIn(credentials: {
     username: string;
     password: string;
   }): Promise<AuthenticationResponse> {
-    /**
-     * function that allows users to login if username and password are correct.
-     * @param {string} username
-     * @param {string} password
-     */
     // ? password hashing
     credentials.password = await bcrypt.hash(
       credentials.password,
@@ -34,21 +33,18 @@ export class AuthService {
     const user = await this.userModel
       .findOne(credentials)
       .orFail(new UnauthorizedException('Incorrect username or password'));
-    // TODO perché ci viene inserita anche la password?
     const payload = { id: user._id, username: user.username };
     return { jwt: await this.jwtService.signAsync(payload) };
   }
 
+  /**
+   * function that allows users to login if username and password are correct
+   * @return {string} "Success", otherwise an error is throw
+   */
   async signUp(credentials: {
     username: string;
     password: string;
   }): Promise<string> {
-    /**
-     * function that allows users to login if username and password are correct
-     * @param {string} username
-     * @param {string} password
-     * @return {string} "Success"
-     */
     credentials.password = await bcrypt.hash(
       credentials.password,
       this.configService.getOrThrow('bcrypt_salt'),
