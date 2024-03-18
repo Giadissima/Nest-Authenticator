@@ -1,6 +1,7 @@
 import { IsString, Length } from "class-validator";
 
 import { ApiProperty } from "@nestjs/swagger";
+import { NotFoundError } from "rxjs";
 import configFn from 'src/config/config'
 
 // ? this line import config file without dependecy injection

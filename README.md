@@ -82,6 +82,8 @@ Finally, in order to connect the database to this application, you just need to 
 
 > Specify the jwt secret for generating new tokens and validate old tokens. **Make sure of not leave this env variable empty for avoid security breach**
 
+You can use, for example, a randomized string
+
 ### JWT_EXPIRES_IN
 
 > Choose when to expire the jwt token  
@@ -144,4 +146,64 @@ Finally, in order to connect the database to this application, you just need to 
 
 ### BCRYPT_SALT
 
-> Specifies the salt for hashing password. Salt is a very important string, similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above, **Make sure of not leave this env variable empty for avoid security breach**. You can use a randomic generated password as Salt as well.
+> Specifies the salt for hashing password. Salt is a very important string, similar to [Jwt secret](https://github.com/Giadissima/Nest-Authenticator#jwt_ignore_exp), writed above, **Make sure of not leave this env variable empty for avoid security breach**. For generating a salt, use this commands:
+
+```js
+const bcrypt = require("bcrypt");
+async genSalt(){
+    bcrypt.genSalt(10, function (err, salt) {
+      console.log(salt); // the random salt string
+    });;
+}
+```
+
+## How to use my authenticator in your projects:
+
+1) copy my auth folder in your project.
+
+2) Add the env variables needed in my project and copy or add my src/config/config.ts file
+
+3) Add this commands in your main.ts:
+
+   ```ts
+   if (configService.getOrThrow<boolean>('enableSwagger')) {
+       const config = new DocumentBuilder()
+         .addBearerAuth()
+         .setTitle(configService.getOrThrow<string>('appName'))
+         .setVersion(version);
+       if (isProductionEnv) {
+         config.addServer('/api');
+       }
+   const document = SwaggerModule.createDocument(app, config.build());
+   SwaggerModule.setup(`/swagger`, app, document, {
+     customSiteTitle: 'Your-project-name',
+     swaggerOptions: {
+       persistAuthorization: true,
+     },
+   });
+   ```
+
+4) In your private route (inside the controller) add these tags:
+
+   ```ts
+   import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+   import { Controller, Get, UseGuards } from '@nestjs/common';
+   
+   import { AuthGuard } from 'src/auth/auth.guard';
+   
+   @Controller()
+   @ApiBearerAuth()
+   export class PrivateController {
+     @ApiTags('Private')
+     @UseGuards(AuthGuard) // decorator needed to make the route private, and only accessible via authentication
+     @Get('private-route')
+     /* This function allows the user to see a message only if client token is valid (see AuthGuard) */
+     privateRoute():string  {
+       return "you have the right access to see this message"
+     }
+   }
+   ```
+
+   
+
+5. If everything goes correctly, now you can see on SwaggerUI (search on browser your server URL + /swagger route) a button on the top with "authorize" text, and your private route with a padlock icon

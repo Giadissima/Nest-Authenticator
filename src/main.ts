@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import { exit } from 'process';
 
 const { version } = require('../package.json');
 
@@ -35,6 +37,11 @@ async function bootstrap(): Promise<void> {
         `,
     });
   }
-  await app.listen(3000);
+  try {
+    await app.listen(configService.get<number>('PORT', 5000));
+  } catch (ex) {
+    await app.close().catch(() => { });
+    exit(1);
+  }
 }
 bootstrap();

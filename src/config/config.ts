@@ -34,7 +34,7 @@ export default (): IEnvironment =>
   ({
     // TODO controllare la lingua inglese sul readme
     environment: process.env.NODE_ENV,
-    port: parseInt(process.env.PORT ?? '3000', 10),
+    port: parseInt(process.env.PORT ?? '5000', 10), // TODO questo comando non funziona più
     enableSwagger: process.env.ENABLE_SWAGGER == 'true',
     jwt: <JWTConfig>{
       secret: process.env.JWT_SECRET,
