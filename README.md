@@ -2,10 +2,13 @@
   <img src="assets/logo.png" width="200" alt="Nest-Authenticator Logo" />
 </p>
 
-  <p align="center">NestJs is a progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-  <a href="https://paypal.me/Giadissima1234?country.x=IT&locale.x=it_IT" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-</p>
-## Description
+<div align="center">
+<a href="https://paypal.me/Giadissima1234?country.x=IT&locale.x=it_IT" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+<a href="https://t.me/Giadissima1234" target="_blank"><img src="assets/telegram.png" width=30/></a>
+<a href="https://www.instagram.com/giadissima___/" target="_blank"><img src="assets/instagram.png" width=30/></a>
+</div>
+
+# Description
 
 Portable project in NestJs to create routes only accessible through Jwt authentication. It also connects with Mongo Db and hashes users' passwords with Bcrypt library. Use of Swagger to create important test's API
 
